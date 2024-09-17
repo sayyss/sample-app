@@ -31,7 +31,6 @@ function Popup({ title, content, onClose }) {
 function App() {
   const [selectedChain, setSelectedChain] = useState('');
   const [calorieLimit, setCalorieLimit] = useState('');
-  const [meals, setMeals] = useState([]);
   const [loading, setLoading] = useState(false);
   const [popupInfo, setPopupInfo] = useState(null);
 
