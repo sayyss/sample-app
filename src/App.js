@@ -442,8 +442,8 @@ function App() {
         },
         {
           headers: {
-            'x-app-id': 'a8af4a63',
-            'x-app-key': 'ab18c7899e9bf8f18725378f5bab6f12',
+            'x-app-id': process.env.REACT_APP_NUTRITIONIX_APP_ID,
+            'x-app-key': process.env.REACT_APP_NUTRITIONIX_API_KEY,
             'Content-Type': 'application/json'
           }
         }
