@@ -1,38 +1,218 @@
 .App {
   text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+  font-family: 'Arial', sans-serif;
+  background-color: white;
+  color: #333;
 }
 
 .App-header {
-  background-color: #282c34;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: flex-start;
+  padding: 20px;
+}
+
+h1 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.Finder-container {
+  background-color: #f5f5f5;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  max-width: 600px; /* Reduced from 800px */
+  width: 100%;
+}
+
+.Logo-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px; /* Reduced from 15px */
+  margin-bottom: 20px;
+}
+
+.Logo-item {
+  aspect-ratio: 1 / 1;
+  display: flex;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
+  cursor: pointer;
+  background-color: white;
+  border-radius: 8px; /* Slightly reduced from 10px */
+  padding: 8px; /* Reduced from 10px */
+  transition: transform 0.3s, box-shadow 0.3s;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.App-link {
-  color: #61dafb;
+.Logo-item:hover {
+  transform: translateY(-3px); /* Reduced from -5px */
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.Logo-item.selected {
+  box-shadow: 0 0 0 2px #61dafb;
+}
+
+.Chain-logo {
+  width: 80%; /* Reduced from 100% */
+  height: 80%; /* Reduced from 100% */
+  object-fit: contain;
+}
+
+/* ... (keep other styles unchanged) ... */
+
+@media (max-width: 480px) { /* Adjusted breakpoint */
+  .Logo-grid {
+    grid-template-columns: repeat(3, 1fr); /* Changed to 3 columns on smaller screens */
   }
-  to {
-    transform: rotate(360deg);
+}
+
+@media (max-width: 360px) {
+  .Logo-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.Input-group {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.Input-group input {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.Input-group label {
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  transform: translateY(-50%);
+  font-size: 16px;
+  color: #999;
+  pointer-events: none;
+  transition: 0.3s ease all;
+}
+
+.Input-group input:focus ~ label,
+.Input-group input:not(:placeholder-shown) ~ label {
+  top: 0;
+  font-size: 12px;
+  color: #61dafb;
+  background-color: white;
+  padding: 0 5px;
+}
+
+.App-button {
+  background-color: #61dafb;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+  border-radius: 5px;
+}
+
+.App-button:hover {
+  background-color: #4fa8d5;
+  transform: translateY(-2px);
+}
+
+.App-button:active {
+  transform: translateY(0);
+}
+
+.App-button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.popup-content {
+  background-color: white;
+  padding: 30px;
+  border-radius: 15px;
+  max-width: 500px;
+  width: 90%;
+  max-height: 80vh;
+  overflow-y: auto;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.popup-content h2 {
+  color: #333;
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
+.popup-content ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.popup-content li {
+  background-color: #f5f5f5;
+  margin-bottom: 15px;
+  padding: 15px;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.popup-content li:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+
+.popup-content button {
+  background-color: #61dafb;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+  border-radius: 25px;
+  margin-top: 20px;
+  display: block;
+  width: 100%;
+  font-weight: 600;
+}
+
+.popup-content button:hover {
+  background-color: #4fa8d5;
+  transform: translateY(-2px);
+}
+
+.popup-content button:active {
+  transform: translateY(0);
+}
+
+@media (max-width: 600px) {
+  .Logo-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
